@@ -36,6 +36,7 @@ products = sqlalchemy.Table(
     sqlalchemy.Column("name", String),
     sqlalchemy.Column("price", Integer),
     sqlalchemy.Column("category_id", Integer, ForeignKey("categories.id")),
+    sqlalchemy.Column("description", String),
     sqlalchemy.Column("photo_id", String),
     sqlalchemy.Column("created_at", DateTime(timezone=True)),
     sqlalchemy.Column("updated_at", DateTime(timezone=True)),
@@ -64,4 +65,12 @@ branches = sqlalchemy.Table(
     sqlalchemy.Column("created_at", DateTime(timezone=True)),
     sqlalchemy.Column("updated_at", DateTime(timezone=True)),
 )
+
+
+
+
+
+
+
+
 

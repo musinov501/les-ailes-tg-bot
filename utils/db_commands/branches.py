@@ -3,7 +3,7 @@ from datetime import datetime
 from core.database_settings import database
 from core.models import branches
 from sqlalchemy import and_, func
-
+from core.models import categories
 
 
 
@@ -51,4 +51,12 @@ async def get_branch_by_name(city: str, branch_name: str) -> dict | None:
         logging.error(f"Error fetching branch {branch_name} in city {city}: {e}")
         return None
     
-    
+   
+async def get_categories_by_branch(branch_id: int):
+    try:
+        query = categories.select().where(categories.c.branch_id == branch_id)
+        results = await database.fetch_all(query)
+        return results
+    except Exception as e:
+        logging.error(f"Error fetching categories for branch ID {branch_id}: {e}")
+        return []

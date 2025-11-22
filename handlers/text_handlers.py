@@ -191,8 +191,8 @@ async def menu_flow_handler(message: Message, state: FSMContext):
         caption = f"🍽 *{meal_obj.name}*\n\n{meal_obj.description}\n\n💰 Narxi: *{meal_obj.price} so'm*"
         back_btn = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text="🔙 Orqaga")]], resize_keyboard=True)
 
-        if meal_obj.photo_url:
-            await message.answer_photo(photo=meal_obj.photo_url, caption=caption, reply_markup=back_btn, parse_mode="Markdown")
+        if meal_obj.photo_id:
+            await message.answer_photo(photo=meal_obj.photo_id, caption=caption, reply_markup=back_btn, parse_mode="Markdown")
         else:
             await message.answer(caption, reply_markup=back_btn, parse_mode="Markdown")
         return

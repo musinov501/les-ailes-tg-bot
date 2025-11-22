@@ -11,6 +11,8 @@ from utils.set_default_commands import set_default_commands
 
 async def startup(bot: Bot):
     await database.connect()
+    # Delete webhook if exists to allow polling
+    await bot.delete_webhook(drop_pending_updates=True)
     await set_default_commands(bot)
     await bot.send_message(text="Bot start to work", chat_id=DEVELOPER)
 

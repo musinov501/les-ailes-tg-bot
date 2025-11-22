@@ -22,7 +22,8 @@ categories = sqlalchemy.Table(
     "categories",
     metadata,
     sqlalchemy.Column("id", Integer, primary_key=True),
-    sqlalchemy.Column("name", String, unique=True),
+    sqlalchemy.Column("name", String),
+    sqlalchemy.Column("branch_id", Integer, ForeignKey("branches.id")),
     sqlalchemy.Column("created_at", DateTime(timezone=True)),
     sqlalchemy.Column("updated_at", DateTime(timezone=True))
 )

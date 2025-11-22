@@ -11,7 +11,7 @@ async def add_product(data: dict) -> dict | None:
             name=data.get("name"),
             description=data.get("description"),
             price=data.get("price"),
-            photo_url=data.get("photo_url"),
+            photo_id=data.get("photo_id"),
             category_id=data.get("category_id"),
             created_at=data.get("created_at", datetime.utcnow()),
             updated_at=data.get("updated_at", datetime.utcnow())
@@ -40,4 +40,13 @@ async def get_product_by_name(name: str):
         return product
     except Exception as e:
         logging.error(f"Error fetching product {name}: {e}")
+        return None
+
+
+async def get_meal_info(name: str):
+    try:
+        query = products.select().where(products.c.name == name)
+        return await database.fetch_one(query)
+    except Exception as e:
+        logging.error(f"Error fetching meal {name}: {e}")
         return None
